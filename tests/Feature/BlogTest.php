@@ -17,7 +17,7 @@ class BlogTest extends TestCase
     public function testBlogPostsPageIsAccessible()
     {
         $response = $this->get(route('posts'));
-
+        
         $response->assertStatus(200);
     }
 

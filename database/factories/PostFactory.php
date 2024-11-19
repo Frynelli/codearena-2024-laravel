@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use App\Models\User;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
  */
@@ -22,6 +22,7 @@ class PostFactory extends Factory
             'image' => 'https://picsum.photos/id/' . $this->faker->numberBetween(1, 50) . '/800/400',
             'body' => $this->faker->paragraph(10),
             'slug' => $this->faker->slug(),
+            'user_id' => User::factory(),
         ];
     }
 }
