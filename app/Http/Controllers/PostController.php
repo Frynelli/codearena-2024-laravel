@@ -12,9 +12,12 @@ class PostController extends Controller
         $posts = Post::when($user, function ($query) use ($user) {
             $query->where('user_id', $user->id);
         })
+        ->whereNotNull('published_at')
         ->whereNotNull('image')
+        ->orderByDesc('published_at')
         ->paginate(12);
-
+        
+        
         return view('posts.index', compact('posts'));
     }
 
