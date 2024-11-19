@@ -11,13 +11,18 @@ class PostController extends Controller
     {
         $posts = Post::when($user, function ($query) use ($user) {
             $query->where('user_id', $user->id);
-        })->paginate(12);
+        })
+        ->whereNotNull('image')
+        ->paginate(12);
 
         return view('posts.index', compact('posts'));
     }
 
-    public function show(Post $post)
+    public function show(Post $post = null)
     {
+         if (is_null($post) || is_null($post->published_at)){
+            abort(404);
+         } 
         return view('posts.show', compact('post'));
     }
 }

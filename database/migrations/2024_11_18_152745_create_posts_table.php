@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->text('body')->nullable();
             $table->string('slug')->unique();
+            $table->timestamp('published_at')->nullable(); // For published Posts
             $table->timestamps();
         });
     }
