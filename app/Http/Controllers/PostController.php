@@ -16,9 +16,14 @@ class PostController extends Controller
         ->whereNotNull('image')
         ->orderByDesc('published_at')
         ->paginate(12);
+
+        $authors = User::whereHas('posts',function ($query){
+            $query->whereNotNull('published_at');
+            })
+            ->orderBy('id')
+            ->get();
         
-        
-        return view('posts.index', compact('posts'));
+        return view('posts.index', compact('posts','authors'));
     }
 
     public function show(Post $post = null)
@@ -27,5 +32,18 @@ class PostController extends Controller
             abort(404);
          } 
         return view('posts.show', compact('post'));
+    }
+    
+    public function authors(User $user = null)
+    {
+        $authors = User::when('author',function ($query){
+            $query->whereNotNull('published_at');
+            })
+            
+            ->get();
+
+            
+            dd($authors);
+        return view('posts.authors', compact('authors'));
     }
 }
