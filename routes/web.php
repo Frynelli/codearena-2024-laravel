@@ -10,7 +10,7 @@ Route::get('/', function () {
 Route::get('/posts', [PostController::class, 'index'])
     ->name('posts');
 
-Route::get('/posts/{post:slug}', [PostController::class, 'show'])
+Route::get('/post/{post:slug}', [PostController::class, 'show'])
     ->name('post');
 
 Route::get('/author/{user}', [PostController::class, 'authors'])

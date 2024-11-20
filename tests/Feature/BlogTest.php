@@ -30,10 +30,12 @@ class BlogTest extends TestCase
         $post = Post::factory()->create([
             'user_id' => $user->id,
         ]);
+        
 
         $response = $this->get(route('post', $post));
-
+        
         $response->assertStatus(200)
+                
             ->assertSee($post->title);
     }
 
@@ -158,7 +160,7 @@ class BlogTest extends TestCase
     }
 
     /**
-     * Blog has section has section with the authors who have published posts.
+     * Blog has section with the authors who have published posts.
      */
     public function testBlogHasSectionWithAuthorsWhoHavePublishedPosts()
     {

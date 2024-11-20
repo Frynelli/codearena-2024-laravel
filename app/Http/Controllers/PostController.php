@@ -27,12 +27,11 @@ class PostController extends Controller
         return view('posts.index', compact('posts','authors'));
     }
 
-    public function show(Post $post = null)
+    public function show(Post $post)
     {
-         if (is_null($post) || is_null($post->published_at)){
+        if (is_null($post->published_at)) {
             abort(404);
-         } 
-         
+        }
         return view('posts.show', compact('post'));
     }
     

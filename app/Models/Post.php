@@ -15,6 +15,11 @@ class Post extends Model
         'published_at' => 'datetime',
     ];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    
     public function author()
     {
         
