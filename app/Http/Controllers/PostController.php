@@ -9,7 +9,6 @@ class PostController extends Controller
 {
     public function index(User $user = null)
     {
-        //τσεκάρουμε αν ο user υπάρχει τότε κοιτάμε τα
         // posts να έχουν αυτά τα κριτήρια για να εμφανιστούν
         $posts = Post::when($user, function ($query) use ($user) {
             $query->where('user_id', $user->id);
@@ -33,19 +32,22 @@ class PostController extends Controller
          if (is_null($post) || is_null($post->published_at)){
             abort(404);
          } 
+         
         return view('posts.show', compact('post'));
     }
     
-    public function authors(User $user = null)
+    public function authors(User $user)
     {
-        $authors = User::when('author',function ($query){
-            $query->whereNotNull('published_at');
-            })
-            
-            ->get();
+        $posts = Post::where('user_id', $user->id)
+        ->whereNotNull('published_at')
+        ->orderBy('published_at', 'desc')
+        ->paginate(12);
 
+        if($posts->isEmpty())
+        {
+            abort(404);
+        }
             
-            dd($authors);
-        return view('posts.authors', compact('authors'));
+        return view('posts.author', compact('user','posts'));
     }
 }

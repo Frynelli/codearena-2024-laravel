@@ -19,7 +19,7 @@
       <div class="relative mt-8 flex items-center gap-x-4">
         <div class="text-sm/6">
           <p class="font-semibold text-gray-900">
-            <a href="#">
+            <a href="{{ route('author', $post->author->id) }}">
               <span class="absolute inset-0"></span>
               {{ $post->author->name }}
             </a>
