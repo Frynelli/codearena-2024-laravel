@@ -9,6 +9,8 @@ class PostController extends Controller
 {
     public function index(User $user = null)
     {
+        //τσεκάρουμε αν ο user υπάρχει τότε κοιτάμε τα
+        // posts να έχουν αυτά τα κριτήρια για να εμφανιστούν
         $posts = Post::when($user, function ($query) use ($user) {
             $query->where('user_id', $user->id);
         })
