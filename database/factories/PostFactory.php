@@ -24,6 +24,8 @@ class PostFactory extends Factory
             'slug' => $this->faker->unique()->slug(),
             'user_id' => User::factory(),
             'published_at' => $this->faker->optional()->dateTime(),
+            'promoted' => $this->faker->boolean(),
+            
         ];
     }
 }

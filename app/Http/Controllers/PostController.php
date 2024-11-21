@@ -15,6 +15,7 @@ class PostController extends Controller
         })
         ->whereNotNull('published_at')
         ->whereNotNull('image')
+        ->orderByDesc('promoted')
         ->orderByDesc('published_at')
         ->paginate(12);
 
@@ -24,11 +25,13 @@ class PostController extends Controller
             ->orderBy('id')
             ->get();
         
+
         return view('posts.index', compact('posts','authors'));
     }
 
     public function show(Post $post)
     {
+        
         if (is_null($post->published_at)) {
             abort(404);
         }
@@ -48,5 +51,25 @@ class PostController extends Controller
         }
             
         return view('posts.author', compact('user','posts'));
+    }
+
+    public function promoted()
+    {
+        $promoted = Post::where('promoted', true)
+        ->whereNotNull('published_at')
+        ->orderBy('published_at', 'desc')
+        ->paginate(12);
+
+        return view('posts.promoted', compact('promoted'));
+    }
+    public function comments()
+    {
+        $comments = Post::where('comment', true)
+        ->whereNotNull('published_at')
+        ->orderBy('published_at', 'desc')
+        ->get();
+
+        return view('component.comment', compact('comments'));
+
     }
 }

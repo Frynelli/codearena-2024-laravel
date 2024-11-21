@@ -30,7 +30,7 @@
               <li class="flex justify-between gap-x-6 py-4">
                 <div class="flex min-w-0 gap-x-4">
                   <div class="min-w-0 flex-auto">
-                    <p class="text-sm/6 font-semibold text-gray-900">{{$author->name}}</p>
+                    <a href="{{ route('author', $post->author->id) }}" class="text-sm/6 font-semibold text-gray-900">{{$author->name}}</a>
                   </div>
                 </div>
                

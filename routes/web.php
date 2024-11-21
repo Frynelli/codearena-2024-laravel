@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -15,3 +16,9 @@ Route::get('/post/{post:slug}', [PostController::class, 'show'])
 
 Route::get('/author/{user}', [PostController::class, 'authors'])
     ->name('author');
+
+Route::get('/promoted', [PostController::class, 'promoted'])
+    ->name('promoted');
+
+Route::post('/post/{post:slug}/comment', [CommentController::class, 'store'])->withoutMiddleware(['auth'])
+    ->name('post.comment.store');

@@ -47,11 +47,13 @@ class BlogTest extends TestCase
         $user1 = User::factory()->create();
         $post1 = Post::factory()->create([
             'user_id' => $user1->id,
+            'published_at' => now(),
         ]);
 
         $user2 = User::factory()->create();
         $post2 = Post::factory()->create([
             'user_id' => $user2->id,
+            'published_at' => now(),
         ]);
 
         $response = $this->get(route('author', $user1));
@@ -269,11 +271,13 @@ class BlogTest extends TestCase
         ]);
 
         $response = $this->get(route('post', $post));
+        
 
         $response->assertStatus(200)
             ->assertSee('id="comment-form"', false)
             ->assertSee('id="name" required', false)
-            ->assertSee('id="body" required', false);
+             ->assertSee('id="body" required', false);
+            
     }
 
     /**
