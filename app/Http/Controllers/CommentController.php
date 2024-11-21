@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Comment;
 
 class CommentController extends Controller
 {
@@ -26,4 +27,14 @@ class CommentController extends Controller
         return redirect()->route('post', $post->slug)
             ->with('success', 'Comment added successfully');
     }
+    
+
+    public function destroy(Comment $comment)
+{
+    $post = $comment->post;
+    $comment->delete();
+    
+    return redirect()->route('post', $post)
+        ->with('success', 'Comment deleted successfully');
+}
 }

@@ -16,7 +16,7 @@
           @endforeach
         @endif   
       </div>
-      <div class="mt-10">
+      <div id="pagination" class="mt-10">
         {{ $posts->links() }}
       </div>
       <section id="authors">

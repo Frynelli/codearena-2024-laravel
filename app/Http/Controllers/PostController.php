@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Comment;
 
 class PostController extends Controller
 {
@@ -74,6 +75,5 @@ class PostController extends Controller
         return view('component.comment', compact('comments'));
 
     }
-
     
 }

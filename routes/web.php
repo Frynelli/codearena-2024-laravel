@@ -22,3 +22,6 @@ Route::get('/promoted', [PostController::class, 'promoted'])
 
 Route::post('/post/{post:slug}/comment', [CommentController::class, 'store'])->withoutMiddleware(['auth'])
     ->name('comment');
+
+Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])
+    ->name('comment.delete');

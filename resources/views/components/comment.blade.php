@@ -15,6 +15,13 @@
                     <div class="m-2 p-4 ">
                     <p class="">{{ $comment->body }}</p>
                     </div>
+                    <form method="POST" action="{{ route('comment.delete', ['post' => $comment->post->slug, 'comment' => $comment->id]) }}" class="inline">
+                            @csrf
+                            @method('DELETE')
+                            <div class="flex justify-end w-full">
+                            <button type="submit" class="p-1 bg-gray-500 text-white rounded-md text-sm">Delete</button>
+                            </div>
+                        </form>
                     
                     </div>
                 </div>
