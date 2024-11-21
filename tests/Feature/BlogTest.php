@@ -29,6 +29,7 @@ class BlogTest extends TestCase
         $user = User::factory()->create();
         $post = Post::factory()->create([
             'user_id' => $user->id,
+            'published_at'=> now(),
         ]);
         
 

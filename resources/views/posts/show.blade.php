@@ -21,9 +21,9 @@
                     </a>
                   </p>
             </div>
-            {{-- <div class="mt-4 border border-gray-500 p-4">
-                <x-comment />
-              </div> --}}
+                <div class="mt-4 border border-gray-500 p-4">
+                <x-comment :comments="$post->comments" />
+              </div> 
             <div class="mt-4 border border-gray-500 p-4">
                 <x-commentform :post="$post" />
               </div>

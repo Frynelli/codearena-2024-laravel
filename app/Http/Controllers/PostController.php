@@ -66,10 +66,14 @@ class PostController extends Controller
     {
         $comments = Post::where('comment', true)
         ->whereNotNull('published_at')
+        ->diffForHumans('created_at')
         ->orderBy('published_at', 'desc')
         ->get();
+        
 
         return view('component.comment', compact('comments'));
 
     }
+
+    
 }

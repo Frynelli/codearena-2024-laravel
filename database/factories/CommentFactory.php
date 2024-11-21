@@ -21,7 +21,7 @@ class CommentFactory extends Factory
             'user_id' => User::factory()->create()->id,
             'post_id' => Post::factory()->create()->id,
             'body' => $this->faker->paragraph(),
-            'published_at' => now(),
+            
             
         ];
     }

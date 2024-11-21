@@ -21,4 +21,4 @@ Route::get('/promoted', [PostController::class, 'promoted'])
     ->name('promoted');
 
 Route::post('/post/{post:slug}/comment', [CommentController::class, 'store'])->withoutMiddleware(['auth'])
-    ->name('post.comment.store');
+    ->name('comment');
