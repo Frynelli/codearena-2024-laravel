@@ -402,7 +402,7 @@ class BlogTest extends TestCase
         $post = Post::factory(20)->create([
             'user_id' => $user->id,
             'published_at' => now(),
-            'image'=>'some-image.jpg',
+            'image'=>'image.jpg',
         ]);
 
         $response = $this->get(route('posts'));
